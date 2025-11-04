@@ -1,0 +1,15 @@
+image: placetopay/php-vapor:php80-pipeline
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - composer
+        script:
+          - composer config bitbucket-oauth.bitbucket.org $BITBUCKET_CONSUMER_KEY $BITBUCKET_CONSUMER_SECRET
+          - composer install --no-interaction
+          - composer phpcs-validate
+          - composer test-ci
+definitions:
+  caches:
+    composer: vendor
