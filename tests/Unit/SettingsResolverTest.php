@@ -2,10 +2,10 @@
 
 namespace Tests\Unit;
 
-use Placetopay\CamaraComercioBogotaSdk\Simulators\ClientSimulator;
-use Placetopay\CamaraComercioBogotaSdk\Support\SettingsResolver;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
+use Placetopay\CamaraComercioBogotaSdk\Simulators\ClientSimulator;
+use Placetopay\CamaraComercioBogotaSdk\Support\SettingsResolver;
 use PlacetoPay\Tangram\Entities\Cache;
 use PlacetoPay\Tangram\Mock\TestLogger;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;

@@ -2,8 +2,8 @@
 
 namespace Placetopay\CamaraComercioBogotaSdk\Parsers;
 
-use Placetopay\CamaraComercioBogotaSdk\Exceptions\AuthenticationException;
 use PlacetoPay\Base\Messages\AdministrativeTransaction;
+use Placetopay\CamaraComercioBogotaSdk\Exceptions\AuthenticationException;
 use PlacetoPay\Tangram\Contracts\CarrierDataObjectContract;
 use PlacetoPay\Tangram\Contracts\ParserHandlerContract;
 

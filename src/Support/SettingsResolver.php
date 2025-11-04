@@ -2,9 +2,9 @@
 
 namespace Placetopay\CamaraComercioBogotaSdk\Support;
 
-use Placetopay\CamaraComercioBogotaSdk\Simulators\ClientSimulator;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use Placetopay\CamaraComercioBogotaSdk\Simulators\ClientSimulator;
 use PlacetoPay\Tangram\Entities\Cache;
 use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;

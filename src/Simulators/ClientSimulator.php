@@ -2,10 +2,10 @@
 
 namespace Placetopay\CamaraComercioBogotaSdk\Simulators;
 
+use GuzzleHttp\Psr7\Response;
 use Placetopay\CamaraComercioBogotaSdk\Constants\Endpoints;
 use Placetopay\CamaraComercioBogotaSdk\Simulators\Behaviours\AuthenticationBehaviour;
 use Placetopay\CamaraComercioBogotaSdk\Simulators\Behaviours\BaseSimulatorBehaviour;
-use GuzzleHttp\Psr7\Response;
 use PlacetoPay\Tangram\Mock\Client\HttpClientMock;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;

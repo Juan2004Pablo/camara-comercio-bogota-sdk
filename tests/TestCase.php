@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use Placetopay\CamaraComercioBogotaSdk\Gateway;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+use Placetopay\CamaraComercioBogotaSdk\Gateway;
 use PlacetoPay\Tangram\Mock\TestLogger;
 
 class TestCase extends PHPUnitTestCase

@@ -2,9 +2,9 @@
 
 namespace Placetopay\CamaraComercioBogotaSdk\Support;
 
+use PlacetoPay\Base\Constants\Operations;
 use Placetopay\CamaraComercioBogotaSdk\Exceptions\ParserException;
 use Placetopay\CamaraComercioBogotaSdk\Parsers\FinancialParser;
-use PlacetoPay\Base\Constants\Operations;
 use PlacetoPay\Tangram\Entities\BaseSettings;
 
 class ParserManager

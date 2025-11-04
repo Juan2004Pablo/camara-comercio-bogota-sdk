@@ -2,12 +2,12 @@
 
 namespace DummyNamespace\Soap\Parsers;
 
-use Placetopay\CamaraComercioBogotaSdk\Exceptions\CamaraComercioBogotaSdkException;
 use DummyNamespace\Soap\Constants\SoapOperations;
 use DummyNamespace\Soap\Entities\Settings;
 use PlacetoPay\Base\Constants\ReasonCodes;
 use PlacetoPay\Base\Entities\Status;
 use PlacetoPay\Base\Messages\Transaction;
+use Placetopay\CamaraComercioBogotaSdk\Exceptions\CamaraComercioBogotaSdkException;
 use PlacetoPay\Tangram\Contracts\CarrierDataObjectContract;
 use PlacetoPay\Tangram\Contracts\ParserHandlerContract;
 

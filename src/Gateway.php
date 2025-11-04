@@ -2,9 +2,9 @@
 
 namespace Placetopay\CamaraComercioBogotaSdk;
 
-use Placetopay\CamaraComercioBogotaSdk\Support\ParserManager;
 use Placetopay\CamaraComercioBogotaSdk\Entities\Settings;
 use Placetopay\CamaraComercioBogotaSdk\Support\AuthenticationManager;
+use Placetopay\CamaraComercioBogotaSdk\Support\ParserManager;
 use Placetopay\CamaraComercioBogotaSdk\Support\SettingsResolver;
 use PlacetoPay\Tangram\Carriers\RestCarrier;
 use PlacetoPay\Tangram\Events\Dispatcher;

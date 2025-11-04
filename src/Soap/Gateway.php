@@ -2,13 +2,13 @@
 
 namespace DummyNamespace\Soap;
 
-use Placetopay\CamaraComercioBogotaSdk\Exceptions\CamaraComercioBogotaSdkException;
-use Placetopay\CamaraComercioBogotaSdk\Support\ParserManager;
 use DummyNamespace\Soap\Entities\Settings;
 use DummyNamespace\Soap\Support\SettingsResolver;
 use PlacetoPay\Base\Constants\Operations;
 use PlacetoPay\Base\Messages\FinancialTransaction;
 use PlacetoPay\Base\Messages\Transaction;
+use Placetopay\CamaraComercioBogotaSdk\Exceptions\CamaraComercioBogotaSdkException;
+use Placetopay\CamaraComercioBogotaSdk\Support\ParserManager;
 use PlacetoPay\Tangram\Carriers\SoapCarrier;
 use PlacetoPay\Tangram\Events\Dispatcher;
 use PlacetoPay\Tangram\Exceptions\InvalidSettingException;
