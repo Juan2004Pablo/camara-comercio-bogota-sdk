@@ -2,8 +2,12 @@
 
 namespace Placetopay\CamaraComercioBogotaSdk;
 
+use PlacetoPay\Base\Messages\AdministrativeTransaction;
+use PlacetoPay\Base\Messages\Transaction;
+use Placetopay\CamaraComercioBogotaSdk\Constants\AdditionalOperations;
+use Placetopay\CamaraComercioBogotaSdk\Entities\ConsultInformationTransaction;
 use Placetopay\CamaraComercioBogotaSdk\Entities\Settings;
-use Placetopay\CamaraComercioBogotaSdk\Support\AuthenticationManager;
+use Placetopay\CamaraComercioBogotaSdk\Exceptions\CamaraComercioBogotaSdkException;
 use Placetopay\CamaraComercioBogotaSdk\Support\ParserManager;
 use Placetopay\CamaraComercioBogotaSdk\Support\SettingsResolver;
 use PlacetoPay\Tangram\Carriers\RestCarrier;
@@ -11,12 +15,12 @@ use PlacetoPay\Tangram\Events\Dispatcher;
 use PlacetoPay\Tangram\Exceptions\InvalidSettingException;
 use PlacetoPay\Tangram\Listeners\HttpLoggerListener;
 use PlacetoPay\Tangram\Services\BaseGateway;
+use Throwable;
 
 class Gateway extends BaseGateway
 {
     protected Settings $settings;
     protected RestCarrier $carrier;
-    protected AuthenticationManager $authenticationManager;
     protected ParserManager $parserManager;
 
     /**
@@ -26,13 +30,34 @@ class Gateway extends BaseGateway
     {
         $this->settings = new Settings($settings, SettingsResolver::create($settings));
         $this->carrier = new RestCarrier($this->settings->client());
-        $this->authenticationManager = new AuthenticationManager($this->settings, $this->carrier);
         $this->parserManager = new ParserManager($this->settings);
 
         $this->addEventDispatcher();
     }
 
-    // TODO: Add operations implementing available contracts
+    public function consultInformation(ConsultInformationTransaction $transaction): AdministrativeTransaction
+    {
+        $this->process(AdditionalOperations::CONSULT_INFORMATION, $transaction);
+
+        return $transaction;
+    }
+
+    /**
+     * @throws CamaraComercioBogotaSdkException
+     */
+    private function process(string $operation, Transaction $transaction): void
+    {
+        try {
+            $parser = $this->parserManager->getParser($operation);
+            $carrierDataObjet = $this->parseRequest($operation, $transaction, $parser);
+            $this->carrier->request($carrierDataObjet);
+            $this->parseResponse($carrierDataObjet, $parser);
+
+            return;
+        } catch (Throwable $e) {
+            throw new CamaraComercioBogotaSdkException($e->getMessage(), $e->getCode(), $e);
+        }
+    }
 
     public function settings(): Settings
     {
@@ -44,7 +69,6 @@ class Gateway extends BaseGateway
      */
     protected function addEventDispatcher(): void
     {
-        // Add Events Required
         if ($loggerSettings = $this->settings->loggerSettings()) {
             $this->setLoggerContext($loggerSettings);
 
