@@ -91,7 +91,7 @@ class SettingsResolver extends OptionsResolver
     {
         $this->define('simulatorMode')
             ->allowedTypes('bool')
-            ->default(false);
+            ->default(true);
     }
 
     protected function defineLogger(): void

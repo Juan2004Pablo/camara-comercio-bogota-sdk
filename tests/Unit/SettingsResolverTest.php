@@ -180,7 +180,7 @@ class SettingsResolverTest extends TestCase
 
         $resolver = SettingsResolver::create($this->data);
 
-        $this->assertFalse($resolver->resolve($this->data)['simulatorMode']);
+        $this->assertTrue($resolver->resolve($this->data)['simulatorMode']);
     }
 
     public function testItValidatesSimulatorModeIsBoolean()

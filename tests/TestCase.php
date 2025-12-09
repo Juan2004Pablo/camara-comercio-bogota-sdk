@@ -14,12 +14,11 @@ class TestCase extends PHPUnitTestCase
     /**
      * @throws InvalidSettingException
      */
-    public function createGateway(array $settings = [], bool $mockClient = true): Gateway
+    public function createGateway(array $settings = []): Gateway
     {
         $this->logger = new TestLogger();
 
         return new Gateway(array_merge([
-            'simulatorMode' => $mockClient,
             'username' => 'username TEST',
             'password' => 'password TEST',
             'url' => 'https://testapi.camaracomercio.gov.co',
