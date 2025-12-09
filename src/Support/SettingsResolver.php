@@ -18,6 +18,8 @@ class SettingsResolver extends OptionsResolver
         $resolver = new self();
 
         $resolver->defineProviderName();
+        $resolver->defineUsername();
+        $resolver->definePassword();
         $resolver->defineUrl();
         $resolver->defineClient();
         $resolver->defineCache();
@@ -34,14 +36,29 @@ class SettingsResolver extends OptionsResolver
     {
         $this->define('providerName')
             ->allowedTypes('string')
-            ->default('Dummy');
+            ->default('Camara Comercio Bogota');
+    }
+
+    protected function defineUsername(): void
+    {
+        $this->define('username')
+            ->allowedTypes('string')
+            ->required();
+    }
+
+    protected function definePassword(): void
+    {
+        $this->define('password')
+            ->allowedTypes('string')
+            ->required();
     }
 
     protected function defineUrl(): void
     {
         $this->define('url')
             ->allowedTypes('string')
-            ->normalize(fn (Options $options, $value) => self::normalizeUrl($value));
+            ->normalize(fn (Options $options, $value) => self::normalizeUrl($value))
+            ->required();
     }
 
     protected function defineClient(): void
@@ -51,8 +68,11 @@ class SettingsResolver extends OptionsResolver
             ->default(function (Options $options) {
                 $settings = [
                     'base_uri' => $options['url'] ?? null,
+                    'timeout' => $options['timeout'] ?? 10,
                     'headers' => [
                         'User-Agent' => 'PlacetopayConnector',
+                        'Content-Type' => 'application/json',
+                        'Date' => gmdate('D, d M Y H:i:s') . ' GMT',
                     ],
                 ];
 
@@ -71,7 +91,7 @@ class SettingsResolver extends OptionsResolver
     {
         $this->define('simulatorMode')
             ->allowedTypes('bool')
-            ->default(false);
+            ->default(true);
     }
 
     protected function defineLogger(): void

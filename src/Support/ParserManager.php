@@ -2,15 +2,15 @@
 
 namespace Placetopay\CamaraComercioBogotaSdk\Support;
 
-use PlacetoPay\Base\Constants\Operations;
+use Placetopay\CamaraComercioBogotaSdk\Constants\AdditionalOperations;
 use Placetopay\CamaraComercioBogotaSdk\Exceptions\ParserException;
-use Placetopay\CamaraComercioBogotaSdk\Parsers\FinancialParser;
+use Placetopay\CamaraComercioBogotaSdk\Parsers\ConsultInformationParser;
 use PlacetoPay\Tangram\Entities\BaseSettings;
 
 class ParserManager
 {
     protected const OPERATIONS_PARSERS = [
-        Operations::SALE => FinancialParser::class,
+        AdditionalOperations::CONSULT_INFORMATION => ConsultInformationParser::class,
     ];
 
     protected array $parsers = [];
@@ -21,6 +21,9 @@ class ParserManager
         $this->settings = $settings;
     }
 
+    /**
+     * @throws ParserException
+     */
     public function getParser(string $operation)
     {
         $this->validateOperation($operation);

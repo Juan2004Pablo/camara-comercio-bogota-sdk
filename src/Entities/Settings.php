@@ -12,6 +12,17 @@ class Settings extends BaseSettings
     {
         return $this->get('providerName');
     }
+
+    public function username(): string
+    {
+        return $this->get('username');
+    }
+
+    public function password(): string
+    {
+        return $this->get('password');
+    }
+
     public function url(): string
     {
         return $this->get('url');
